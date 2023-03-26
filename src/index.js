@@ -15,9 +15,9 @@ const refs = {
 refs.inputEl.addEventListener('input', debounce(onInputType, DEBOUNCE_DELAY));
 
 function onInputType() {
-const cityName = refs.inputEl.value;
-console.log(cityName);
-
+const cityName = refs.inputEl.value.trim();
+refs.inputEl.value = cityName;
+    
 fetchCountries(cityName);
 }
 
