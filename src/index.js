@@ -2,10 +2,7 @@ import './css/styles.css';
 import { fetchCountries } from './fetchCountries.js';
 import debounce from 'lodash.debounce';
 
-// var debounce = require('lodash.debounce');
-
 const DEBOUNCE_DELAY = 300;
-
 const refs = {
   inputEl: document.querySelector('#search-box'),
   listEl: document.querySelector('.country-list'),

@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 export function fetchCountries(name) {
   console.log(name);
 
@@ -6,15 +8,16 @@ export function fetchCountries(name) {
   )
     .then(countries => countries.json())
     .then(data => renderCountriesList(data, name))
-    .catch(error => console.log(error));
+    .catch(onFetchError);
 }
+const container = document.querySelector('.country-info');
 
 function renderCountriesList(countryFields, searchField) {
-  console.log(countryFields);
-  console.log(searchField);
-  if (searchField.length <= 0) {
-      searchField.reset();
-      return document.querySelector('.country-info').innerHTML = '';
+  console.log('hi - countryFields', countryFields);
+  console.log(' hi - searchField', searchField);
+    if (searchField.length <= 0) {
+    container.style.display = 'none';
+    return;
   }
 
   const renderCountryFields = countryFields
@@ -29,5 +32,10 @@ function renderCountriesList(countryFields, searchField) {
       `;
     })
     .join('');
-  document.querySelector('.country-info').innerHTML = renderCountryFields;
+  container.innerHTML = renderCountryFields;
+}
+
+function onFetchError(error) {
+    container.style.display = 'none';
+    Notiflix.Notify.failure('Oops, there is no country with that name');
 }
