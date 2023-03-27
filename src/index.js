@@ -17,7 +17,7 @@ function onInputType(e) {
   e.preventDefault();
 
   const countryName = e.target.value.trim();
-  // refs.inputEl.value = countryName;
+  refs.inputEl.value = countryName;
 
   if (!countryName) {
     clearCountryCard();
@@ -37,16 +37,16 @@ function renderCountries(countries) {
   }
 
   if (countries.length > 1 && countries.length <= 10) {
+    clearCountryCard();
     const renderCountryList = countries
       .map(({ name, flags }) => {
         return ` 
-     <li>
-    <img src="${flags.svg}" alt="${flags.alt}" width='70px' />
-    ${name.official}
-      <li />`;
+           <li class = "country-item">
+           <img src="${flags.svg}" alt="${flags.alt}"/>
+           ${name.official}
+            <li/>`;
       })
       .join('');
-
     refs.listEl.innerHTML = renderCountryList;
   }
 
@@ -56,12 +56,12 @@ function renderCountries(countries) {
       .map(({ name, capital, flags, languages, population }) => {
         let coutryLanguages = Object.values(languages);
         return `
-<img src="${flags.svg}" alt="${name.official}" width='100px'>
-<h1>${name.official}<h1>
-  <h2>Capital: ${capital}</h2>
-  <p>Population: ${population}</p>
-  <p>Languages: ${coutryLanguages}</p>
-      `;
+           <img src="${flags.svg}" alt="${name.official}" width='100px'>
+           <h1>${name.official}<h1>
+           <h2>Capital: ${capital}</h2>
+           <p>Population: ${population}</p>
+           <p>Languages: ${coutryLanguages}</p>
+          `;
       })
       .join('');
     refs.container.innerHTML = renderCountryCard;
