@@ -69,7 +69,9 @@ function renderCountries(countries) {
 }
 
 function onFetchError(error) {
-  console.log('Catch');
+  clearCountryCard();
+  clearCountryList();
+
   Notiflix.Notify.failure('Oops, there is no country with that name');
 }
 
